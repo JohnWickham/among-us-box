@@ -1,8 +1,8 @@
-from pyhap.accessory import Accessory, Category
+from pyhap.accessory import Accessory
 
 class Sabotage_Trigger(Accessory):
   
-  category = Category.CATEGORY_SWITCH # This is for the icon in the iOS Home app.
+  category = CATEGORY_SWITCH # This is for the icon in the iOS Home app.
 
   def __init__(self, *args, **kwargs):
     # If overriding this method, be sure to call the super's implementation first.
