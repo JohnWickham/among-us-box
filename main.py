@@ -1,5 +1,6 @@
-from pyhap.accessory import Accessory, Category
-#import pyhap.loader as loader
+#from pyhap.accessory import Accessory, Category
+from pyhap.accessory import Accessory
+from pyhap.const import Category
 
 class Sabotage_Trigger(Accessory):
   
