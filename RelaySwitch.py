@@ -10,6 +10,8 @@ class RelaySwitch(Accessory):
 
   def __init__(self, pin_number, *args, **kwargs):
     super().__init__(*args, **kwargs)
+    
+    print("Relay on pin ", pin_number)
 
     self.pin_number = pin_number
     GPIO.setmode(GPIO.BCM)
