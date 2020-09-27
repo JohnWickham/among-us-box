@@ -13,8 +13,7 @@ logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
 def get_accessory(driver):
     """Call this method to get a standalone Accessory."""
-    return RelaySwitch(4, driver, 'PrimaryRelaySwitch')
-
+    return RelaySwitch(17, driver, 'PrimaryRelaySwitch')
 
 # Start the accessory on port 51826
 driver = AccessoryDriver(port=51826)
