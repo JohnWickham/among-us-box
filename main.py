@@ -1,25 +1,42 @@
+import subprocess
+import os
 from pyhap.accessory import Accessory
-from pyhap.const import Category
 
-class Sabotage_Trigger(Accessory):
-  
-  category = CATEGORY_SWITCH # This is for the icon in the iOS Home app.
+class RelaySwitch(Accessory):
+  category = CATEGORY_OUTLET
 
-  def __init__(self, *args, **kwargs):
-    # If overriding this method, be sure to call the super's implementation first.
+  def __init__(self, pin_number, *args, **kwargs):
     super().__init__(*args, **kwargs)
-  
-    # Add the services that this Accessory will support with add_preload_service here
-    switch_service = self.add_preload_service('Switch')
-    self.char_on = serv_light.configure_char('On', value=self._state)
-  
-    serv_light.setter_callback = self._set_chars
 
-  def _set_chars(self, char_values):
-    if "On" in char_values:
-      print('HomeKit is changing the value to: ', char_values["On"])
+    self.pin_number = pin_number
+    _gpio_setup(self.pin_number)
 
-  # The `stop` method can be `async` as well
-  def stop(self):
-    # Do whatever you need to shut down and clean up.
-    print('Stopping accessory.')
+    serv_switch = self.add_preload_service('Outlet')
+    self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
+    self.relay_in_use = serv_switch.configure_char('OutletInUse', setter_callback=self.get_relay_in_use)
+
+  @Accessory.run_at_interval(1)
+  def run(self):
+    state = get_gpio_state(self.pin_number)
+
+    if self.relay_on.value != state:
+      self.relay_on.value = state
+      self.relay_on.notify()
+      self.relay_in_use.notify()
+
+    oldstate = 1
+
+    if state != oldstate:
+      oldstate == state
+
+  def set_relay(self, state):
+    if get_gpio_state(self.pin_number) != state:
+      GPIO.output(self.pin_number, state ? 1 : 0)
+
+  def get_relay_in_use(self, state):
+      return True
+  
+  # Shutdown Switch
+  # Edit /etc/sudoers and add the line "orange ALL=NOPASSWD: /sbin/shutdown"
+
+  # os.system("sudo shutdown -h now")
