@@ -1,5 +1,6 @@
 import subprocess
 import os
+import RPi.GPIO as GPIO
 from pyhap.accessory import Accessory
 from pyhap.const import CATEGORY_OUTLET
 
