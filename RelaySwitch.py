@@ -1,6 +1,7 @@
 import subprocess
 import os
 from pyhap.accessory import Accessory
+from pyhap.const import CATEGORY_OUTLET
 
 class RelaySwitch(Accessory):
   
