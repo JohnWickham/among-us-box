@@ -33,7 +33,10 @@ class RelaySwitch(Accessory):
 
   def set_relay(self, state):
     if get_gpio_state(self.pin_number) != state:
-      GPIO.output(self.pin_number, state ? 1 : 0)
+      if state:
+        GPIO.output(self.pin_number, 1)
+      else:
+        GPIO.output(self.pin_number, 0)
 
   def get_relay_in_use(self, state):
       return True
