@@ -21,7 +21,7 @@ class RelaySwitch(Accessory):
 
   @Accessory.run_at_interval(1)
   def run(self):
-    state = get_gpio_state(self.pin_number)
+    state = GPIO.input(self.pin_number)
 
     if self.relay_on.value != state:
       self.relay_on.value = state
@@ -34,7 +34,7 @@ class RelaySwitch(Accessory):
       oldstate == state
 
   def set_relay(self, state):
-    if get_gpio_state(self.pin_number) != state:
+    if GPIO.input(self.pin_number) != state:
       if state:
         GPIO.output(self.pin_number, 1)
       else:
