@@ -1,43 +1,29 @@
-import subprocess
-import os
-from pyhap.accessory import Accessory
+import logging
+import signal
+import random
 
-class RelaySwitch(Accessory):
-  category = CATEGORY_OUTLET
+from pyhap.accessory import Accessory, Bridge
+from pyhap.accessory_driver import AccessoryDriver
+import pyhap.loader as loader
+from pyhap import camera
+from pyhap.const import CATEGORY_SENSOR
 
-  def __init__(self, pin_number, *args, **kwargs):
-    super().__init__(*args, **kwargs)
+logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
-    self.pin_number = pin_number
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.OUT)
+def get_accessory(driver):
+    """Call this method to get a standalone Accessory."""
+    return RelaySwitch(driver, 'PrimaryRelaySwitch')
 
-    serv_switch = self.add_preload_service('Outlet')
-    self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
-    self.relay_in_use = serv_switch.configure_char('OutletInUse', setter_callback=self.get_relay_in_use)
 
-  @Accessory.run_at_interval(1)
-  def run(self):
-    state = get_gpio_state(self.pin_number)
+# Start the accessory on port 51826
+driver = AccessoryDriver(port=51826)
 
-    if self.relay_on.value != state:
-      self.relay_on.value = state
-      self.relay_on.notify()
-      self.relay_in_use.notify()
+# Change `get_accessory` to `get_bridge` if you want to run a Bridge.
+driver.add_accessory(accessory=get_accessory(driver))
 
-    oldstate = 1
+# We want SIGTERM (terminate) to be handled by the driver itself,
+# so that it can gracefully stop the accessory, server and advertising.
+signal.signal(signal.SIGTERM, driver.signal_handler)
 
-    if state != oldstate:
-      oldstate == state
-
-  def set_relay(self, state):
-    if get_gpio_state(self.pin_number) != state:
-      GPIO.output(self.pin_number, state ? 1 : 0)
-
-  def get_relay_in_use(self, state):
-      return True
-  
-  # Shutdown Switch
-  # Edit /etc/sudoers and add the line "orange ALL=NOPASSWD: /sbin/shutdown"
-
-  # os.system("sudo shutdown -h now")
+# Start it!
+driver.start()

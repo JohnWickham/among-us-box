@@ -3,6 +3,7 @@ import os
 from pyhap.accessory import Accessory
 
 class RelaySwitch(Accessory):
+  
   category = CATEGORY_OUTLET
 
   def __init__(self, pin_number, *args, **kwargs):
