@@ -9,7 +9,8 @@ class RelaySwitch(Accessory):
     super().__init__(*args, **kwargs)
 
     self.pin_number = pin_number
-    _gpio_setup(self.pin_number)
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
 
     serv_switch = self.add_preload_service('Outlet')
     self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
