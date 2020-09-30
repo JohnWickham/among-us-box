@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
-import SoundPlayer
+import Sounds
 import threading
 import os
 
