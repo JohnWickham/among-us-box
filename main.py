@@ -28,7 +28,7 @@ sound_effect_thread = None
 step_count = 0
 switch_step = -1
 
-while Running:
+while running:
   if GPIO.input(shutdown_input) == GPIO.LOW:
     halt_system()
   
