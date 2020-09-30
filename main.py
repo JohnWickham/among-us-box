@@ -56,7 +56,7 @@ while running:
     is_trigger_button_latched = True
     begin_sabotage()
     continue
-  else if GPIO.input(trigger_button_input) == GPIO.LOW:
+  elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
     
   if is_sabotaged:
