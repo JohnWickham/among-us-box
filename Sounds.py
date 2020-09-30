@@ -14,7 +14,8 @@ class SoundPlayer:
 
   def play_sound(self, sound):
     
-    sound = sound.value
+    if type(sound) != str:
+      sound = sound.value
     pygame.mixer.music.load(sound)
     pygame.mixer.music.play()
     
