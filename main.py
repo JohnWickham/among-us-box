@@ -35,7 +35,7 @@ def begin_sabotage():
   GPIO.output(relay_output, GPIO.LOW)
   
   sound_player.loop_sound_effect = True
-  sound_effect_thread = Threading.thread(target=sound_player.play_sound, args=(ALARM,))
+  sound_effect_thread = threading.thread(target=sound_player.play_sound, args=(ALARM,))
   sound_effect_thread.start()
     
 def halt_system():
