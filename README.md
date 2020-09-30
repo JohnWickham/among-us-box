@@ -3,6 +3,8 @@
 
 ## Installation
 ```
+$ pip3 install playsound
+
 $ sudo apt-get install libavahi-compat-libdnssd-dev
 $ sudo pip3 install HAP-python HAP-python[QRCode]
 ```

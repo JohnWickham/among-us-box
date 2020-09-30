@@ -1,5 +1,4 @@
 import subprocess
-import os
 import RPi.GPIO as GPIO
 from pyhap.accessory import Accessory
 from pyhap.const import CATEGORY_OUTLET
@@ -42,8 +41,3 @@ class RelaySwitch(Accessory):
 
   def get_relay_in_use(self, state):
       return True
-  
-  # Shutdown Switch
-  # Edit /etc/sudoers and add the line "orange ALL=NOPASSWD: /sbin/shutdown"
-
-  # os.system("sudo shutdown -h now")
