@@ -7,11 +7,11 @@ import os
 GPIO.setmode(GPIO.BCM)
 
 # Define input and output pins
-trigger_button_input = 5
+trigger_button_input = 26
 relay_output = 4
 shutdown_input = 25
 switch_inputs = [17, 27, 22, 23, 24]
-led_outputs = [6, 12, 13, 16, 26]
+led_outputs = [5, 6, 12, 13, 16]
 led_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
 
 GPIO.setup(trigger_button_input, GPIO.IN)
