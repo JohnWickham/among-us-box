@@ -32,9 +32,11 @@ switch_step = -1
 
 while running:
   if GPIO.input(shutdown_input) == GPIO.LOW:
+    print("Shutdown button pressed")
     halt_system()
   
   if GPIO.input(trigger_button_input) == GPIO.LOW:
+    print("Trigger button pressed")
     begin_sabotage()
     continue
     
