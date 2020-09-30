@@ -25,6 +25,8 @@ running = True
 sound_player = SoundPlayer()
 sound_effect_thread = None
 
+is_sabotaged = False
+
 step_count = 0
 switch_step = -1
 
@@ -44,8 +46,6 @@ while running:
     GPIO.output(led_outputs, GPIO.LOW)
     # Process switch input sequence
     
-is_sabotaged = False
-
 def begin_sabotage():
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)
