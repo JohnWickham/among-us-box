@@ -12,6 +12,7 @@ class SoundPlayer:
 
   def play_sound(self, sound):
     
+    sound = sound.value
     playsound(sound)
     
     if loop_sound_effect:
