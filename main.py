@@ -30,24 +30,6 @@ is_sabotaged = False
 step_count = 0
 switch_step = -1
 
-while running:
-  if GPIO.input(shutdown_input) == GPIO.LOW:
-    print("Shutdown button pressed")
-    halt_system()
-  
-  if GPIO.input(trigger_button_input) == GPIO.LOW:
-    print("Trigger button pressed")
-    begin_sabotage()
-    continue
-    
-  if is_sabotaged:
-    if switch_step == -1:
-      step_count = random(5, 10)
-      switch_step = 0
-      
-    GPIO.output(led_outputs, GPIO.LOW)
-    # Process switch input sequence
-    
 def begin_sabotage():
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)
@@ -60,3 +42,21 @@ def halt_system():
   # Initiate system shutdown
   # Edit /etc/sudoers and add the line "<your_user_name> ALL=NOPASSWD: /sbin/shutdown"
   os.system("sudo shutdown -h now")
+
+while running:
+  if GPIO.input(shutdown_input) == GPIO.LOW:
+    print("Shutdown button pressed")
+    halt_system()
+  
+  if GPIO.input(trigger_button_input) == GPIO.HIGH:
+    print("Trigger button pressed")
+    begin_sabotage()
+    continue
+    
+  if is_sabotaged:
+    if switch_step == -1:
+      step_count = random(5, 10)
+      switch_step = 0
+      
+    GPIO.output(led_outputs, GPIO.LOW)
+    # Process switch input sequence
