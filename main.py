@@ -36,7 +36,7 @@ while Running:
     continue
     
   if is_sabotaged:
-    if switch_step = -1:
+    if switch_step == -1:
       step_count = random(5, 10)
       switch_step = 0
       
