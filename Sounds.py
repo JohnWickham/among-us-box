@@ -17,4 +17,4 @@ class SoundPlayer:
     
     if self.loop_sound_effect:
       while self.loop_sound_effect:
-        playsound()
+        playsound(sound)
