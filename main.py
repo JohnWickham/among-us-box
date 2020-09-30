@@ -25,6 +25,9 @@ running = True
 sound_player = SoundPlayer()
 sound_effect_thread = None
 
+is_trigger_button_latched = False
+is_shutdown_button_latched = False
+
 is_sabotaged = False
 
 step_count = 0
@@ -48,10 +51,13 @@ while running:
     print("Shutdown button pressed")
     halt_system()
   
-  if GPIO.input(trigger_button_input) == GPIO.HIGH:
+  if GPIO.input(trigger_button_input) == GPIO.HIGH and is_trigger_button_latched == False:
     print("Trigger button pressed")
+    is_trigger_button_latched = True
     begin_sabotage()
     continue
+  else if GPIO.input(trigger_button_input) == GPIO.LOW:
+    is_trigger_button_latched = False
     
   if is_sabotaged:
     if switch_step == -1:
