@@ -19,8 +19,8 @@ class SoundPlayer:
     pygame.mixer.music.load(sound)
     pygame.mixer.music.play()
     
-    while pygame.mixer.music.get_busy() == True:
-      continue
-    
     if self.loop_sound_effect:
-      self.play_sound(sound)
+      while self.loop_sound_effect:
+        pygame.mixer.music.play()
+    else:
+      pygame.mixer.music.stop()
