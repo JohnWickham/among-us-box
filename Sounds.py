@@ -3,8 +3,8 @@ from pygame import mixer
 from time import sleep
 
 class SoundEffect(Enum):
-  ALARM = "alarm.mp3"
-  VICTORY = "victory.mp3"
+  ALARM = "alarm.ogg"
+  VICTORY = "victory.ogg"
   
 class SoundPlayer:
   
