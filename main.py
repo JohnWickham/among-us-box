@@ -24,7 +24,7 @@ running = True
 
 sound_effect_thread = None
 sound_player = SoundPlayer()
-sound_player.play_sound(SoundEffect.TASK_DONE)
+sound_player.play_sound(SoundEffect.GAME_START)
 
 is_trigger_button_latched = False
 is_shutdown_button_latched = False
