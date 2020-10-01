@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
 from Sounds import SoundPlayer, SoundEffect
-import threading
 import os
 
 GPIO.setmode(GPIO.BCM)
@@ -22,7 +21,6 @@ GPIO.setup(led_outputs, GPIO.OUT)
 
 running = True
 
-sound_effect_thread = None
 sound_player = SoundPlayer()
 sound_player.play_sound(SoundEffect.GAME_START)
 
@@ -44,8 +42,6 @@ def begin_sabotage():
   GPIO.output(relay_output, GPIO.LOW)
   
   sound_player.play_sound(SoundEffect.ALARM, True)
-  # sound_effect_thread = threading.Thread(target=sound_player.play_sound, args=(SoundEffect.ALARM,))
-  # sound_effect_thread.start()
   
 def finish_sabotage():
   global is_sabotaged
