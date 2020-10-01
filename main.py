@@ -107,6 +107,7 @@ def process_sabotage():
       all_states_high = False
   
   if all_states_high:
+    print("All switches on; finishing sabotage…")
     finish_sabotage()
 
 while running:
