@@ -3,6 +3,7 @@ from pygame import mixer
 
 class SoundEffect(Enum):
   ALARM = "alarm.ogg"
+  TASK_DONE = "task_done.ogg"
   VICTORY = "victory.ogg"
   
 class SoundPlayer:
