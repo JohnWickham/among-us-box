@@ -45,8 +45,17 @@ def begin_sabotage():
   GPIO.output(relay_output, GPIO.LOW)
   
   sound_player.loop_sound_effect = True
-  sound_effect_thread = threading.Thread(target=sound_player.play_sound, args=(SoundEffect.ALARM,))
-  sound_effect_thread.start()
+  sound_player.play_sound(SoundEffect.ALARM)
+  # sound_effect_thread = threading.Thread(target=sound_player.play_sound, args=(SoundEffect.ALARM,))
+  # sound_effect_thread.start()
+  
+def finish_sabotage():
+  global is_sabotaged
+  
+  is_sabotaged = False
+  
+  sound_player.loop_sound_effect = False
+  sound_player.play_sound(SoundEffect.TASK_DONE)
     
 def halt_system():
   # Initiate system shutdown
@@ -61,7 +70,10 @@ while running:
   if GPIO.input(trigger_button_input) == GPIO.HIGH and is_trigger_button_latched == False:
     print("Trigger button pressed")
     is_trigger_button_latched = True
-    begin_sabotage()
+    if is_sabotaged:
+      finish_sabotage()
+    else:
+      begin_sabotage()
     continue
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
