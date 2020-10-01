@@ -90,9 +90,11 @@ while running:
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
   
-  if next_scheduled_sabotage_date.ctime() == datetime.now().ctime():
+  if next_scheduled_sabotage_date.ctime() == datetime.now().ctime(): # Comparing the actual datetimes doesn't work for some reason.
     print("Sabotage is scheduled to begin now!")
     begin_sabotage()
+    
+  sleep(0.001) # 1ms should be sufficiently fast to loop
     
   #if is_sabotaged:
     # if switch_step == -1:
