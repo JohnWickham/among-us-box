@@ -86,7 +86,7 @@ while running:
       finish_sabotage()
     else:
       begin_sabotage()
-    continue
+      continue
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
   
