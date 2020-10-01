@@ -35,8 +35,8 @@ next_scheduled_sabotage_date = None
 def schedule_next_sabotage():
   global next_scheduled_sabotage_date
   
-  min_offset = 60#5 * 60 # 5 minutes
-  max_offset = 5 * 60#12 * 60 * 60 # 12 hours
+  min_offset = 5 * 60 # 5 minutes
+  max_offset = 12 * 60 * 60 # 12 hours
   random_seconds = random.randint(min_offset, max_offset)
   now = datetime.now()
   next_scheduled_sabotage_date = now + timedelta(seconds=random_seconds)
