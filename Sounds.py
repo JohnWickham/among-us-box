@@ -1,6 +1,5 @@
 from enum import Enum
 from pygame import mixer
-from time import sleep
 
 class SoundEffect(Enum):
   ALARM = "alarm.ogg"
@@ -20,6 +19,5 @@ class SoundPlayer:
       sound = sound.value
     mixer_sound = mixer.Sound(sound)
     
-    mixer_sound.play()
-    
-    time.sleep(5)
+    count = -1 if loop_sound_effect else 0
+    mixer_sound.play(count)
