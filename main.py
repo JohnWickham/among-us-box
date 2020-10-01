@@ -106,13 +106,18 @@ while running:
       
       if state != output_states[index]:
         # Switch has changed state! Randomly decide whether to switch a *different* one back here.
-        undo_other = random.randint(0, 1)
-        if undo_other == 1 and changed_switch_inputs:
+        should_undo_other = random.randint(0, 1)
+        if should_undo_other == 1 and changed_switch_inputs:
+         
           index_to_undo = random.choice(changed_switch_inputs)
-          current_state = GPIO.input(switch_inputs[index_to_undo])
-          GPIO.output(led_outputs[index_to_undo], 0 if current_state == GPIO.HIGH else 1)
           
-        changed_switch_inputs.append(pin_number)
+          current_state = GPIO.input(switch_inputs[index_to_undo])
+          new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
+          
+          output_states[index] = new_state
+          GPIO.output(led_outputs[index_to_undo], new_state)
+          
+        changed_switch_inputs.append(index)
         
       GPIO.output(led_outputs[index], state)
       output_states[index] = state
