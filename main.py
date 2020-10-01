@@ -73,6 +73,41 @@ def halt_system():
   # You’re probably running this script as sudo, in which case this will work fine.
   # Otherwise, edit /etc/sudoers and add the line "<your_user_name> ALL=NOPASSWD: /sbin/shutdown"
   os.system("sudo shutdown -h now")
+  
+def process_sabotage():
+  
+  if is_sabotaged == False:
+    return
+  
+  all_states_high = True
+  
+  for (index, pin_number) in enumerate(switch_inputs):
+    
+    state = GPIO.input(pin_number)
+    
+    if state != output_states[index]:
+      # Switch has changed state! Randomly decide whether to switch a *different* one back here.
+      should_undo_other = random.randint(0, 1)
+      if should_undo_other == 1 and changed_switch_inputs:
+       
+        index_to_undo = random.choice(changed_switch_inputs)
+        
+        current_state = GPIO.input(switch_inputs[index_to_undo])
+        new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
+        
+        output_states[index] = new_state
+        GPIO.output(led_outputs[index_to_undo], new_state)
+        
+      changed_switch_inputs.append(index)
+      
+    GPIO.output(led_outputs[index], state)
+    output_states[index] = state
+    
+    if state != GPIO.HIGH:
+      all_states_high = False
+  
+  if all_states_high:
+    finish_sabotage()
 
 while running:
   if GPIO.input(shutdown_input) == GPIO.LOW:
@@ -97,33 +132,4 @@ while running:
   sleep(0.001) # 1ms should be sufficiently fast to loop
     
   if is_sabotaged:
-    
-    all_states_high = True
-    
-    for (index, pin_number) in enumerate(switch_inputs):
-      
-      state = GPIO.input(pin_number)
-      
-      if state != output_states[index]:
-        # Switch has changed state! Randomly decide whether to switch a *different* one back here.
-        should_undo_other = random.randint(0, 1)
-        if should_undo_other == 1 and changed_switch_inputs:
-         
-          index_to_undo = random.choice(changed_switch_inputs)
-          
-          current_state = GPIO.input(switch_inputs[index_to_undo])
-          new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
-          
-          output_states[index] = new_state
-          GPIO.output(led_outputs[index_to_undo], new_state)
-          
-        changed_switch_inputs.append(index)
-        
-      GPIO.output(led_outputs[index], state)
-      output_states[index] = state
-      
-      if state != GPIO.HIGH:
-        all_states_high = False
-    
-    if all_states_high:
-      finish_sabotage()
+    process_sabotage()
