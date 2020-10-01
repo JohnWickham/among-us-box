@@ -84,7 +84,7 @@ def process_sabotage():
   for (index, pin_number) in enumerate(switch_inputs):
     
     state = GPIO.input(pin_number)
-    print("State on pin " + pin_number + " is " + "high" if state == GPIO.HIGH else "low")
+    print("Pin", pin_number, " is ", state)
     
     if state != output_states[index]:
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
