@@ -108,9 +108,9 @@ while running:
         # Switch has changed state! Randomly decide whether to switch a *different* one back here.
         undo_other = random.randint(0, 1)
         if undo_other == 1:
-          switch_to_undo = random.choice(changed_switch_inputs)
-          current_state = GPIO.input(switch_to_undo)
-          GPIO.output(switch_to_undo, 0 if current_state == GPIO.HIGH else 1) # FIXME: Don't output to a switch input pin. Change the matching output_states and output to the matching LED pin
+          index_to_undo = random.choice(changed_switch_inputs)
+          current_state = GPIO.input(switch_inputs[index_to_undo])
+          GPIO.output(led_outputs[index_to_undo], 0 if current_state == GPIO.HIGH else 1)
           
         changed_switch_inputs.append(pin_number)
         
