@@ -70,7 +70,8 @@ def finish_sabotage():
     
 def halt_system():
   # Initiate system shutdown
-  # Edit /etc/sudoers and add the line "<your_user_name> ALL=NOPASSWD: /sbin/shutdown"
+  # You’re probably running this script as sudo, in which case this will work fine.
+  # Otherwise, edit /etc/sudoers and add the line "<your_user_name> ALL=NOPASSWD: /sbin/shutdown"
   os.system("sudo shutdown -h now")
 
 while running:
