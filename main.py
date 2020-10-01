@@ -65,9 +65,9 @@ while running:
     is_trigger_button_latched = False
     
   if is_sabotaged:
-    if switch_step == -1:
-      step_count = random(5, 10)
-      switch_step = 0
-      
-    GPIO.output(led_outputs, GPIO.LOW)
+    # if switch_step == -1:
+    #   step_count = random(5, 10)
+    #   switch_step = 0
+    #   
+    # GPIO.output(led_outputs, GPIO.LOW)
     # Process switch input sequence
