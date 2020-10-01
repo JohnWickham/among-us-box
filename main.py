@@ -24,7 +24,6 @@ running = True
 
 sound_effect_thread = None
 sound_player = SoundPlayer()
-sound_player.loop_sound_effect = False
 sound_player.play_sound(SoundEffect.TASK_DONE)
 
 is_trigger_button_latched = False
@@ -44,8 +43,7 @@ def begin_sabotage():
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)
   
-  sound_player.loop_sound_effect = True
-  sound_player.play_sound(SoundEffect.ALARM)
+  sound_player.play_sound(SoundEffect.ALARM, True)
   # sound_effect_thread = threading.Thread(target=sound_player.play_sound, args=(SoundEffect.ALARM,))
   # sound_effect_thread.start()
   
@@ -54,7 +52,6 @@ def finish_sabotage():
   
   is_sabotaged = False
   
-  sound_player.loop_sound_effect = False
   sound_player.play_sound(SoundEffect.TASK_DONE)
     
 def halt_system():
