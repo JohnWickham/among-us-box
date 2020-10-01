@@ -23,5 +23,5 @@ class SoundPlayer:
     count = -1 if self.loop_sound_effect else 0
     channel = mixer.music.play(count)
     
-    while channela.get_busy():
-       pygame.time.delay(100)
+    while channel.get_busy():
+      sleep(100)
