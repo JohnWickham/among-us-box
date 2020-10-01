@@ -34,7 +34,7 @@ step_count = 0
 switch_step = -1
 
 def begin_sabotage():
-  global is_sabotaged = True
+  global is_sabotaged == True
   
   if is_sabotaged:
     return
