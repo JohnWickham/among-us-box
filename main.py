@@ -90,9 +90,7 @@ while running:
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
   
-  print("Next sabotage: ", next_scheduled_sabotage_date.ctime())
-  print("Now: ", datetime.now().ctime())
-  if next_scheduled_sabotage_date == datetime.now():
+  if next_scheduled_sabotage_date.ctime() == datetime.now().ctime():
     print("Sabotage is scheduled to begin now!")
     begin_sabotage()
     
