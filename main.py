@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import datetime
+import random
 from time import sleep
 from Sounds import SoundPlayer, SoundEffect
 import os
