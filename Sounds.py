@@ -22,3 +22,6 @@ class SoundPlayer:
     
     count = -1 if loop else 0
     mixer_sound.play(count)
+  
+  def stop(self):
+    mixer.stop()
