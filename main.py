@@ -36,7 +36,7 @@ def schedule_next_sabotage():
   
   min_offset = 60#5 * 60 # 5 minutes
   max_offset = 5 * 60#12 * 60 * 60 # 12 hours
-  random_seconds = random(min_offset, max_offset)
+  random_seconds = randint(min_offset, max_offset)
   now = datetime.now()
   next_scheduled_sabotage_date = now + datetime.delta(seconds=random_seconds)
   print("Next sabotage scheduled for: ", next_scheduled_sabotage_date.ctime())
@@ -93,7 +93,7 @@ while running:
     
   #if is_sabotaged:
     # if switch_step == -1:
-    #   step_count = random(5, 10)
+    #   step_count = randint(5, 10)
     #   switch_step = 0
     #   
     # GPIO.output(led_outputs, GPIO.LOW)
