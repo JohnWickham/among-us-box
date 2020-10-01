@@ -1,5 +1,6 @@
 from enum import Enum
-import pygame
+from pygame import mixer
+from time import sleep
 
 class SoundEffect(Enum):
   ALARM = "alarm.mp3"
@@ -7,7 +8,8 @@ class SoundEffect(Enum):
   
 class SoundPlayer:
   
-  pygame.mixer.init()
+  __init__():
+    mixer.init()
   
   loop_sound_effect = False
   _thread = None
@@ -16,10 +18,10 @@ class SoundPlayer:
     
     if type(sound) != str:
       sound = sound.value
-    pygame.mixer.music.load(sound)
+    mixer.music.load(sound)
     
     count = -1 if self.loop_sound_effect else 0
-    pygame.mixer.music.play(count)
+    channel = mixer.music.play(count)
     
-    while pygame.mixer.music.get_busy(): 
-      pygame.time.Clock().tick(10)
+    while channela.get_busy():
+       pygame.time.delay(100)
