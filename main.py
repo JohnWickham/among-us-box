@@ -101,7 +101,7 @@ while running:
     
     all_states_high = True
     
-    for (index, pin_number) in enumerate(switch_inputs) {
+    for (index, pin_number) in enumerate(switch_inputs):
       
       state = GPIO.input(pin_number)
       
@@ -120,8 +120,6 @@ while running:
       
       if state != GPIO.HIGH:
         all_states_high = False
-      
-    }
     
     if all_states_high:
       finish_sabotage()
