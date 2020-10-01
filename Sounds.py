@@ -18,6 +18,7 @@ class SoundPlayer:
     if type(sound) != str:
       sound = sound.value
     mixer_sound = mixer.Sound(sound)
+    mixer_sound.set_volume(1)
     
     count = -1 if self.loop_sound_effect else 0
     mixer_sound.play(count)
