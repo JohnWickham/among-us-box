@@ -90,6 +90,7 @@ while running:
     is_trigger_button_latched = False
     
   if next_scheduled_sabotage_date == datetime.now():
+    print("Sabotage is scheduled to begin now!")
     begin_sabotage()
     
   #if is_sabotaged:
