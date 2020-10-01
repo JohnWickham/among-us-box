@@ -18,7 +18,7 @@ class SoundPlayer:
       sound = sound.value
     pygame.mixer.music.load(sound)
     
-    count = loop_sound_effect ? 0 : -1
+    count = -1 if loop_sound_effect else 0
     pygame.mixer.music.play(count)
     
     while pygame.mixer.music.get_busy(): 
