@@ -22,8 +22,10 @@ GPIO.setup(led_outputs, GPIO.OUT)
 
 running = True
 
-sound_player = SoundPlayer()
 sound_effect_thread = None
+sound_player = SoundPlayer()
+sound_player.loop_sound_effect = False
+sound_player.play_sound(SoundEffect.TASK_DONE)
 
 is_trigger_button_latched = False
 is_shutdown_button_latched = False
