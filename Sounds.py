@@ -10,7 +10,7 @@ class SoundEffect(Enum):
 class SoundPlayer:
   
   def __init__(self):
-    mixer.init()
+    mixer.init(44100, -16, 1, 1024)
   
   _thread = None
 
@@ -19,7 +19,7 @@ class SoundPlayer:
     if type(sound) != str:
       sound = sound.value
     mixer_sound = mixer.Sound(sound)
-    mixer_sound.set_volume(10)
+    mixer_sound.set_volume(1)
     
     count = -1 if loop else 0
     mixer_sound.play(count)
