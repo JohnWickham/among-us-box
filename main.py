@@ -28,7 +28,6 @@ sound_player = SoundPlayer()
 sound_player.play_sound(SoundEffect.GAME_START)
 
 is_trigger_button_latched = False
-is_shutdown_button_latched = False
 
 is_sabotaged = False
 next_scheduled_sabotage_date = None
