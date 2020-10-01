@@ -10,7 +10,7 @@ class SoundEffect(Enum):
 class SoundPlayer:
   
   def __init__(self):
-    mixer.init(44100, -16, 1, 1024)
+    mixer.init()
   
   _thread = None
 
