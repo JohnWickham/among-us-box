@@ -8,7 +8,7 @@ class SoundEffect(Enum):
   
 class SoundPlayer:
   
-  __init__():
+  __init__(self):
     mixer.init()
   
   loop_sound_effect = False
