@@ -34,6 +34,9 @@ step_count = 0
 switch_step = -1
 
 def begin_sabotage():
+  if is_sabotaged:
+    return
+  
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)
   
