@@ -64,7 +64,7 @@ while running:
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
     
-  if is_sabotaged:
+  #if is_sabotaged:
     # if switch_step == -1:
     #   step_count = random(5, 10)
     #   switch_step = 0
