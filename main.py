@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from datetime import datetime
+from datetime import datetime, timedelta
 from random import randint
 from time import sleep
 from Sounds import SoundPlayer, SoundEffect
@@ -39,7 +39,7 @@ def schedule_next_sabotage():
   max_offset = 5 * 60#12 * 60 * 60 # 12 hours
   random_seconds = randint(min_offset, max_offset)
   now = datetime.now()
-  next_scheduled_sabotage_date = now + datetime.delta(seconds=random_seconds)
+  next_scheduled_sabotage_date = now + datetime.timedelta(seconds=random_seconds)
   print("Next sabotage scheduled for: ", next_scheduled_sabotage_date.ctime())
 
 schedule_next_sabotage()
