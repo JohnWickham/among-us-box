@@ -18,10 +18,8 @@ class SoundPlayer:
     
     if type(sound) != str:
       sound = sound.value
-    mixer.music.load(sound)
+    mixer_sound = mixer.Sound(sound)
     
-    count = -1 if self.loop_sound_effect else 0
-    channel = mixer.music.play(count)
+    mixer_sound.play()
     
-    while channel.get_busy():
-      sleep(100)
+    time.sleep(5)
