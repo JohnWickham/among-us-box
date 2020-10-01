@@ -52,6 +52,7 @@ def finish_sabotage():
   
   is_sabotaged = False
   
+  sound_player.stop()
   sound_player.play_sound(SoundEffect.TASK_DONE)
     
 def halt_system():
