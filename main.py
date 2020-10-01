@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import datetime
 from time import sleep
 from Sounds import SoundPlayer, SoundEffect
 import os
@@ -28,6 +29,19 @@ is_trigger_button_latched = False
 is_shutdown_button_latched = False
 
 is_sabotaged = False
+next_scheduled_sabotage_date = None
+
+def schedule_next_sabotage():
+  global next_scheduled_sabotage_date
+  
+  min_offset = 60#5 * 60 # 5 minutes
+  max_offset = 5 * 60#12 * 60 * 60 # 12 hours
+  random_seconds = random(min_offset, max_offset)
+  now = datetime.now()
+  next_scheduled_sabotage_date = now + datetime.delta(seconds=random_seconds)
+  print("Next sabotage scheduled for: ", next_scheduled_sabotage_date.ctime())
+
+schedule_next_sabotage()
 
 step_count = 0
 switch_step = -1
@@ -50,6 +64,8 @@ def finish_sabotage():
   
   sound_player.stop()
   sound_player.play_sound(SoundEffect.TASK_DONE)
+  
+  schedule_next_sabotage()
     
 def halt_system():
   # Initiate system shutdown
@@ -71,6 +87,9 @@ while running:
     continue
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
+    
+  if next_scheduled_sabotage_date == datetime.now():
+    begin_sabotage()
     
   #if is_sabotaged:
     # if switch_step == -1:
