@@ -34,7 +34,7 @@ class DisplayDrawer():
     
     size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
     print(f'Framebuffer size: {size[0]} x {size[1]}')
-    self.screen = pygame.display.set_mode((1980, 800), pygame.FULLSCREEN)
+    self.screen = pygame.display.set_mode((1280, 800), pygame.FULLSCREEN)
     # Clear the screen to start
     self.screen.fill((0, 0, 0))        
     # Initialise font support
