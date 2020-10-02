@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from datetime import datetime, timedelta
 import random
 from time import sleep
-from Sounds import SoundPlayer, SoundEffect
+from sounds import SoundPlayer, SoundEffect
 import os
 
 GPIO.setmode(GPIO.BCM)
