@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import random
 from time import sleep
 from sounds import SoundPlayer, SoundEffect
+from drawing import DisplayDrawer
 import os
 
 GPIO.setmode(GPIO.BCM)
@@ -23,6 +24,8 @@ GPIO.setup(switch_inputs, GPIO.IN)
 GPIO.setup(led_outputs, GPIO.OUT)
 
 running = True
+
+display = DisplayDrawer()
 
 sound_player = SoundPlayer()
 sound_player.play_sound(SoundEffect.GAME_START)
@@ -126,6 +129,8 @@ while running:
       continue
   elif GPIO.input(trigger_button_input) == GPIO.LOW:
     is_trigger_button_latched = False
+    
+  display.loop()
   
   if next_scheduled_sabotage_date.ctime() == datetime.now().ctime(): # Comparing the actual datetimes doesn't work for some reason.
     print("Sabotage is scheduled to begin now!")
