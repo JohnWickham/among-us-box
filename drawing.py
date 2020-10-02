@@ -47,7 +47,4 @@ class DisplayDrawer():
 
   def loop(self):
     self.screen.fill((255, 0, 0))
-    
-    self.screen.fill(red)
-    # Update the display
     pygame.display.update()
