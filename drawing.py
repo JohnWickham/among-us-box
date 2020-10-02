@@ -33,7 +33,7 @@ class DisplayDrawer():
         raise Exception('No suitable video driver found!')
     
     size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
-    print "Framebuffer size: %d x %d" % (size[0], size[1])
+    print(f'Framebuffer size: {size[0]} x {size[1]}')
     self.screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     # Clear the screen to start
     self.screen.fill((0, 0, 0))        
