@@ -46,7 +46,6 @@ class DisplayDrawer():
     "Destructor to make sure pygame shuts down, etc."
 
   def update(self):
-    print("Updating display")
     self.screen.fill((255, 0, 0))
     pygame.display.update()
     pygame.display.flip()
