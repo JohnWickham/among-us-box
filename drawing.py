@@ -24,7 +24,7 @@ class DisplayDrawer():
         try:
             pygame.display.init()
         except pygame.error:
-            print 'Driver: {0} failed.'.format(driver)
+            print(f'Driver: {driver} failed.')
             continue
         found = True
         break
