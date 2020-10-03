@@ -39,7 +39,7 @@ class DisplayDrawer():
       sleep(1)
       
     self.clock = pygame.time.Clock()
-    font = pygame.font.SysFont('arial.ttf', 30)
+    font = pygame.font.SysFont('Arial', 30)
     
   top_graph_y_points = []
       
@@ -104,6 +104,7 @@ class DisplayDrawer():
     
     self.draw_top_graph()
     self.draw_bottom_graph()
+    self.draw_center_text()
     
     pygame.display.flip()
     pygame.display.update()
