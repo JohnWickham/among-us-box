@@ -47,7 +47,7 @@ class DisplayDrawer():
     pygame.draw.lines(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
 
   def update(self):
-    self.screen.fill((0, 0, 0))
+    self.screen.fill((255, 0, 0))
     
     self.draw_top_graph()
     
