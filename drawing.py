@@ -58,7 +58,7 @@ class DisplayDrawer():
     point_count = len(self.top_graph_y_points)
     if point_count > graph_point_count:
       print("Hit end; removing earlier points")
-      self.top_graph_y_points.pop(point_count - 1)
+      self.top_graph_y_points.pop(0)
       
     points = []
     for (index, y) in enumerate(self.top_graph_y_points):
