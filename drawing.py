@@ -1,12 +1,15 @@
 import pygame
 import os
 from time import sleep
+from random import randint
 
 class DisplayDrawer():
   
   screen = None
   screen_width = 0
   screen_height = 0
+  
+  graph_green_color = (0, 255, 0)
   
   def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
@@ -31,14 +34,22 @@ class DisplayDrawer():
       pygame.display.update()
       sleep(1)
       
-  def __del__(self):
-    "Destructor to make sure pygame shuts down, etc."
+  top_graph_points = [(0, 0)]
+  
+  def draw_top_graph(self):
+    # Add a new point to the top graph
+    graph_width = self.screen_width
+    graph_height = 100
+    graph_x = 0
+    graph_y = self.screen_height - graph_height
+    random_point = randint(1, graph_height)
+    self.top_graph_points.append((graph_width, random_point))
+    pygame.draw(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
     
-    # Top screen
-    pygame.draw.rect(self.screen, (255, 255, 255), (25, self.screen_height - 25, self.screen_width - 25, 50), 1)
+    self.draw_top_graph()
     
     pygame.display.flip()
     pygame.display.update()
