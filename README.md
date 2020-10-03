@@ -9,6 +9,12 @@ $ sudo apt-get install libavahi-compat-libdnssd-dev
 $ sudo pip3 install HAP-python HAP-python[QRCode]
 ```
 
+### Installing Arial
+
+Arial, the font face, is close to [an abomination](https://www.swiss-miss.com/2009/09/arial-versus-helvetica.html) of typeface design. It’s genuinely [an imposter itself](https://www.marksimonson.com/notebook/view/the-scourge-of-arial), and if I could eject one font from the airlock of design, it would be Arial.
+
+That said, the game uses Arial, so we will, too. Install it with `sudo apt-get install ttf-mscorefonts-installer` and verify with `fc-match arial`.
+
 ## Starting at boot
 
 1. Create a file at `/etc/systemd/system/among-us-box.service` with this:

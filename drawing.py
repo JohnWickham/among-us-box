@@ -6,7 +6,8 @@ from random import randint
 class DisplayDrawer():
   
   clock = None
-  
+  font = None
+
   screen = None
   screen_width = 0
   screen_height = 0
@@ -38,6 +39,7 @@ class DisplayDrawer():
       sleep(1)
       
     self.clock = pygame.time.Clock()
+    font = pygame.font.SysFont('Arial', 30)
     
   top_graph_y_points = []
       
@@ -92,6 +94,10 @@ class DisplayDrawer():
       points.append((x, y))
     
     pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
+    
+  def draw_center_text(self):
+    textsurface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
+    self.screen.blit(textsurface, (0, self.screen_height / 2))
 
   def update(self):
     self.screen.fill((0, 0, 0))
