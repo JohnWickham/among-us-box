@@ -11,7 +11,7 @@ class DisplayDrawer():
   screen_width = 0
   screen_height = 0
   
-  graph_green_color = (0, 255, 0)
+  graph_green_color = (161, 233, 73)
   
   def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
