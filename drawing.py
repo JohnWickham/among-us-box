@@ -42,12 +42,9 @@ class DisplayDrawer():
     graph_x = 0
     graph_y = self.screen_height - graph_height
     
-    points = []
-    count = round(self.screen_width / 100)
-    for x in range(count):
-      y = randint(0, graph_height)
-      points.append((x, y))
-    
+    y = randint(1, self.screen_height)
+    points = [(0, 0), (self.screen_width, y)]
+   
     pygame.draw.lines(self.screen, self.graph_green_color, True, points, 1)
 
   def update(self):
