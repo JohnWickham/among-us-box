@@ -95,18 +95,21 @@ class DisplayDrawer():
     
     pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
     
-  def draw_center_text(self):
-    text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
+  def draw_center_text(self, is_sabotaged):
+    if is_sabotaged:
+      text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
+    else:
+      text_surface = self.font.render('Tasks Completed', False, (0, 255, 0))
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
     self.screen.blit(text_surface, (0, y))
 
-  def update(self):
+  def update(self, is_sabotaged=False):
     self.screen.fill((0, 0, 0))
     
     self.draw_top_graph()
     self.draw_bottom_graph()
-    self.draw_center_text()
+    self.draw_center_text(is_sabotaged)
     
     pygame.display.update()
     
