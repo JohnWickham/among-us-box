@@ -39,7 +39,7 @@ class DisplayDrawer():
   def draw_top_graph(self):
     # Add a new point to the top graph
     graph_width = self.screen_width
-    graph_height = 100
+    graph_height = 500
     graph_x = 0
     graph_y = self.screen_height - graph_height
     random_point = graph_y + randint(1, graph_height)
