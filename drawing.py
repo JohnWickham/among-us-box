@@ -49,7 +49,7 @@ class DisplayDrawer():
   def update(self):
     self.screen.fill((255, 0, 0))
     
-    #self.draw_top_graph()
+    self.draw_top_graph()
     
     pygame.display.flip()
     pygame.display.update()
