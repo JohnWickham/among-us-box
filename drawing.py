@@ -65,11 +65,39 @@ class DisplayDrawer():
       points.append((x, y))
     
     pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
+    
+  bottom_graph_y_points = []
+    
+  def draw_bottom_graph(self):
+    
+    graph_width = self.screen_width
+    graph_height = 60
+    graph_x = 0
+    graph_y = graph_height
+    graph_point_count = 110
+    
+    if len(self.bottom_graph_y_points) == 0:
+      self.bottom_graph_y_points.append(graph_y)
+    
+    new_y_point = graph_y + randint(1, graph_height / 4)
+    self.bottom_graph_y_points.append(new_y_point)
+    
+    point_count = len(self.bottom_graph_y_points)
+    if point_count > graph_point_count:
+      self.bottom_graph_y_points.pop(0)
+      
+    points = []
+    for (index, y) in enumerate(self.bottom_graph_y_points):
+      x = graph_width - (index * round(graph_width / graph_point_count))
+      points.append((x, y))
+    
+    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
     
     self.draw_top_graph()
+    self.draw_bottom_graph()
     
     pygame.display.flip()
     pygame.display.update()
