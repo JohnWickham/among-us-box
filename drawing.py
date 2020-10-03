@@ -37,7 +37,7 @@ class DisplayDrawer():
       pygame.display.update()
       sleep(1)
       
-    clock = pygame.time.Clock()
+    self.clock = pygame.time.Clock()
     
   top_graph_points = [(0, 0)]
       
