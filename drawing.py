@@ -99,7 +99,6 @@ class DisplayDrawer():
     text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
-    text_surface = pygame.transform.flip(text_surface, False, True)
     self.screen.blit(text_surface, (0, y))
 
   def update(self):
@@ -109,7 +108,7 @@ class DisplayDrawer():
     self.draw_bottom_graph()
     self.draw_center_text()
     
-    pygame.display.flip()
+    # pygame.display.flip()
     pygame.display.update()
     
     self.clock.tick(30)
