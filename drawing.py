@@ -97,7 +97,7 @@ class DisplayDrawer():
     
   def draw_center_text(self):
     textsurface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
-    self.screen.blit(textsurface, (0, self.screen_height / 2))
+    self.screen.blit(textsurface, (0, 0))
 
   def update(self):
     self.screen.fill((0, 0, 0))
