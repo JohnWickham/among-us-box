@@ -108,7 +108,7 @@ class DisplayDrawer():
     self.draw_bottom_graph()
     self.draw_center_text()
     
-    self.screen = pygame.transform.flip(self.screen, True, False)
+    self.screen = pygame.transform.flip(self.screen, False, True)
     pygame.display.update()
     
     self.clock.tick(30)
