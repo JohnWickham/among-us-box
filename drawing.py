@@ -44,7 +44,7 @@ class DisplayDrawer():
     graph_y = self.screen_height - graph_height
     random_point = randint(1, graph_height)
     self.top_graph_points.append((graph_width, random_point))
-    pygame.draw(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
+    pygame.draw.lines(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
