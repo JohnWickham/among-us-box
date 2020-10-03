@@ -56,7 +56,7 @@ class DisplayDrawer():
     self.top_graph_y_points.append(new_y_point)
     
     points = []
-    for (index, y) in reversed(List(enumerate(self.top_graph_y_points))):
+    for (index, y) in reversed(list(enumerate(self.top_graph_y_points))):
       x = index * round(graph_width / graph_point_count)
       points.append((x, y))
     
