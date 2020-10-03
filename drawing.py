@@ -42,11 +42,9 @@ class DisplayDrawer():
     graph_height = 100
     graph_x = 0
     graph_y = self.screen_height - graph_height
-    random_point = graph_y + randint(1, graph_height)
+    random_point = randint(1, graph_height)
     self.top_graph_points.append((graph_width, random_point))
-    for point in self.top_graph_points:
-      point[0] = point[0] - 5
-    pygame.draw.aalines(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
+    pygame.draw.lines(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
