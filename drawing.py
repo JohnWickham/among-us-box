@@ -39,7 +39,7 @@ class DisplayDrawer():
       sleep(1)
       
     self.clock = pygame.time.Clock()
-    font = pygame.font.SysFont('Arial', 30)
+    font = pygame.font.SysFont('arial', 30)
     
   top_graph_y_points = []
       
