@@ -61,7 +61,7 @@ class DisplayDrawer():
       
     points = []
     for (index, y) in enumerate(self.top_graph_y_points):
-      x = index * round(graph_width / graph_point_count)
+      x = graph_width - (index * round(graph_width / graph_point_count))
       points.append((x, y))
     
     pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
