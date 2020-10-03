@@ -43,7 +43,8 @@ class DisplayDrawer():
     graph_y = self.screen_height - graph_height
     
     points = []
-    for x in range(self.screen_width / 100):
+    count = round(self.screen_width / 100)
+    for x in range(count):
       y = randint(0, graph_height)
       points.append((x, y))
     
