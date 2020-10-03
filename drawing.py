@@ -5,6 +5,8 @@ from time import sleep
 class DisplayDrawer():
   
   screen = None
+  screen_width = 0
+  screen_height = 0
   
   def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
@@ -22,9 +24,9 @@ class DisplayDrawer():
     if not self.FindDisplayDriver():
       print("Failed to initialise display driver; continuing anyway.")
     else:
-      width  = pygame.display.Info().current_w
-      height = pygame.display.Info().current_h
-      self.screen = pygame.display.set_mode((width,height), pygame.FULLSCREEN)
+      self.screen_width  = pygame.display.Info().current_w
+      self.screen_height = pygame.display.Info().current_h
+      self.screen = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.FULLSCREEN)
       pygame.mouse.set_visible(False)
       pygame.display.update()
       sleep(1)
@@ -33,6 +35,10 @@ class DisplayDrawer():
     "Destructor to make sure pygame shuts down, etc."
 
   def update(self):
-    self.screen.fill((255, 0, 0))
+    self.screen.fill((0, 0, 0))
+    
+    # Top screen
+    pygame.draw.rectangle(self.screen, (255, 255, 255), (25, self.screen_height - 25, self.screen_width - 25, 50), 1)
+    
     pygame.display.flip()
     pygame.display.update()
