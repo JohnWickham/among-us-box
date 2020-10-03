@@ -43,6 +43,8 @@ class DisplayDrawer():
     graph_x = 0
     graph_y = self.screen_height - graph_height
     random_point = graph_y + randint(1, graph_height)
+    top_y_graph_points.append(random_point)
+    )
     graph_points = []
     for (index, y) in enumerate(self.top_graph_y_points):
       x = index * 5
