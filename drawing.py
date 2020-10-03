@@ -34,18 +34,19 @@ class DisplayDrawer():
       pygame.display.update()
       sleep(1)
     
+  top_graph_points = [(0, 0)]
+      
   def draw_top_graph(self):
-    global top_graph_y_points
     # Add a new point to the top graph
     graph_width = self.screen_width
     graph_height = 100
     graph_x = 0
-    graph_y = self.screen_height - graph_height
-    
-    y = randint(1, self.screen_height)
-    points = [(0, 0), (self.screen_width, y)]
-   
-    pygame.draw.lines(self.screen, self.graph_green_color, True, points, 1)
+     graph_y = self.screen_height - graph_height
+     random_point = graph_y + randint(1, graph_height)
+     self.top_graph_points.append((graph_width, random_point))
+     for point in self.top_graph_points:
+       point[0] = point[0] - 5
+     pygame.draw.aalines(self.screen, self.graph_green_color, True, self.top_graph_points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
