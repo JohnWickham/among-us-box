@@ -5,6 +5,8 @@ from random import randint
 
 class DisplayDrawer():
   
+  clock = None
+  
   screen = None
   screen_width = 0
   screen_height = 0
@@ -24,6 +26,7 @@ class DisplayDrawer():
   
   def __init__(self):
     pygame.init()
+    
     if not self.FindDisplayDriver():
       print("Failed to initialise display driver; continuing anyway.")
     else:
@@ -33,6 +36,8 @@ class DisplayDrawer():
       pygame.mouse.set_visible(False)
       pygame.display.update()
       sleep(1)
+      
+    clock = pygame.time.Clock()
     
   top_graph_points = [(0, 0)]
       
@@ -53,3 +58,5 @@ class DisplayDrawer():
     
     pygame.display.flip()
     pygame.display.update()
+    
+    self.clock.tick(30)
