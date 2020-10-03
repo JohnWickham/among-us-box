@@ -16,7 +16,7 @@ class DisplayDrawer():
         pass
     return False
   
-  def __init__():
+  def __init__(self):
     pygame.init()
     if not FindDisplayDriver():
       print("Failed to initialise display driver")
