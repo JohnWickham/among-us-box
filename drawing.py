@@ -60,7 +60,7 @@ class DisplayDrawer():
       x = index * round(graph_width / graph_point_count)
       points.append((x, y))
     
-    pygame.draw.lines(self.screen, self.graph_green_color, True, points, 1)
+    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
