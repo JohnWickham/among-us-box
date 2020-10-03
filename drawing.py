@@ -36,3 +36,4 @@ class DisplayDrawer():
     self.screen.fill((255, 0, 0))
     pygame.display.update()
     pygame.display.flip()
+    pygame.time.clock.tick(30)
