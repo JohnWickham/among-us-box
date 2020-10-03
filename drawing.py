@@ -38,7 +38,7 @@ class DisplayDrawer():
     self.screen.fill((0, 0, 0))
     
     # Top screen
-    pygame.draw.rectangle(self.screen, (255, 255, 255), (25, self.screen_height - 25, self.screen_width - 25, 50), 1)
+    pygame.draw.rect(self.screen, (255, 255, 255), (25, self.screen_height - 25, self.screen_width - 25, 50), 1)
     
     pygame.display.flip()
     pygame.display.update()
