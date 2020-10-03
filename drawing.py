@@ -39,7 +39,7 @@ class DisplayDrawer():
       
     self.clock = pygame.time.Clock()
     
-  top_graph_y_points = [0]
+  top_graph_y_points = []
       
   def draw_top_graph(self):
     # Add a new point to the top graph
@@ -48,6 +48,9 @@ class DisplayDrawer():
     graph_x = 0
     graph_y = self.screen_height - graph_height
     graph_point_count = 130
+    
+    if len(self.top_graph_y_points) == 0:
+      self.top_graph_y_points.append(graph_y)
     
     new_y_point = graph_y + randint(1, graph_height)
     self.top_graph_y_points.append(new_y_point)
