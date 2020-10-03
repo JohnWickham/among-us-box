@@ -5,7 +5,7 @@ class DisplayDrawer():
   
   screen = None
   
-  def FindDisplayDriver():
+  def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
       if not os.getenv("SDL_VIDEODRIVER"):
         os.putenv("SDL_VIDEODRIVER", driver)
