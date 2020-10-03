@@ -18,7 +18,7 @@ class DisplayDrawer():
   
   def __init__(self):
     pygame.init()
-    if not FindDisplayDriver():
+    if not self.FindDisplayDriver():
       print("Failed to initialise display driver")
     else:
       width  = pygame.display.Info().current_w
