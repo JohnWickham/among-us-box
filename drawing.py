@@ -47,7 +47,7 @@ class DisplayDrawer():
     graph_points = []
     for (index, y) in enumerate(self.top_graph_y_points):
       x = index * 5
-      graph_points.append((x, y))
+      graph_points.append((x + 25, y + 25))
     pygame.draw.aalines(self.screen, self.graph_green_color, True, graph_points, 1)
 
   def update(self):
