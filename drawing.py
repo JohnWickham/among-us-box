@@ -33,23 +33,21 @@ class DisplayDrawer():
       pygame.mouse.set_visible(False)
       pygame.display.update()
       sleep(1)
-      
-  top_graph_y_points = [0]
-  
+    
   def draw_top_graph(self):
     global top_graph_y_points
     # Add a new point to the top graph
     graph_width = self.screen_width
-    graph_height = 500
+    graph_height = 100
     graph_x = 0
     graph_y = self.screen_height - graph_height
-    random_point = graph_y + randint(1, graph_height)
-    self.top_graph_y_points.append(random_point)
-    graph_points = []
-    for (index, y) in enumerate(self.top_graph_y_points):
-      x = index * 5
-      graph_points.append((x, y))
-    pygame.draw.lines(self.screen, self.graph_green_color, True, graph_points, 1)
+    
+    points = []
+    for x in range(self.screen_width / 100):
+      y = randint(0, graph_height)
+      points.append((x, y))
+    
+    pygame.draw.lines(self.screen, self.graph_green_color, True, points, 1)
 
   def update(self):
     self.screen.fill((0, 0, 0))
