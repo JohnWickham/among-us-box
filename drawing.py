@@ -34,7 +34,7 @@ class DisplayDrawer():
       pygame.display.update()
       sleep(1)
       
-  top_graph_y_points = []
+  top_graph_y_points = [0]
   
   def draw_top_graph(self):
     global top_graph_y_points
