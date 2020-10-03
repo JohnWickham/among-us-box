@@ -96,8 +96,10 @@ class DisplayDrawer():
     pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
     
   def draw_center_text(self):
-    textsurface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
-    self.screen.blit(textsurface, (0, 0))
+    text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
+    text_frame = text_surface.get_rect()
+    y = (self.screen_height / 2) - (text_frame / 2)
+    self.screen.blit(text_surface, (0, y))
 
   def update(self):
     self.screen.fill((0, 0, 0))
