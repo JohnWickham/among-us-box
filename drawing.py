@@ -13,10 +13,11 @@ class DisplayDrawer():
   screen_height = 0
   
   red_color = (234, 50, 35)
-  green_color = (161, 233, 73)
+  green_color = (81, 177, 51)
+  graph_green_color = (161, 233, 73)
   yellow_color = (238, 221, 74)
   
-  current_text_color = green_color
+  current_text_color = graph_green_color
   last_text_color_alternate_time = 0
   
   def FindDisplayDriver(self):
@@ -71,7 +72,7 @@ class DisplayDrawer():
       x = graph_width - (index * round(graph_width / graph_point_count))
       points.append((x, y))
     
-    pygame.draw.lines(self.screen, self.green_color, False, points, 1)
+    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
     
   bottom_graph_y_points = []
     
@@ -98,7 +99,7 @@ class DisplayDrawer():
       x = graph_width - (index * round(graph_width / graph_point_count))
       points.append((x, y))
     
-    pygame.draw.lines(self.screen, self.green_color, False, points, 1)
+    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
     
   def draw_center_text(self, is_sabotaged):
    
@@ -110,7 +111,7 @@ class DisplayDrawer():
       
       string = "Fix Lights (%0)"
     else:
-      self.current_text_color = self.green_color
+      self.current_text_color = self.graph_green_color
       string = "Tasks Completed"
     
     text_surface = self.font.render(string, False, self.current_text_color)
