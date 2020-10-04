@@ -17,7 +17,7 @@ class DisplayDrawer():
   graph_green_color = (161, 233, 73)
   yellow_color = (238, 221, 74)
   
-  current_text_color = graph_green_color
+  current_text_color = green_color
   last_text_color_alternate_time = 0
   
   def FindDisplayDriver(self):
@@ -111,7 +111,7 @@ class DisplayDrawer():
       
       string = "Fix Lights (%0)"
     else:
-      self.current_text_color = self.graph_green_color
+      self.current_text_color = self.green_color
       string = "Tasks Completed"
     
     text_surface = self.font.render(string, False, self.current_text_color)
