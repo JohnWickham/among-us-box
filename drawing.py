@@ -113,6 +113,7 @@ class DisplayDrawer():
       string = "Tasks Completed"
     
     text_surface = self.font.render(string, False, self.current_text_color)
+    text_surface = pygame.transform.flip(text_surface, True, True)  # Flip the text vertically.
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
     self.screen.blit(text_surface, (0, y))
