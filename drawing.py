@@ -104,8 +104,8 @@ class DisplayDrawer():
     if is_sabotaged:
       
       current_clock_time = pygame.time.get_ticks()
-      if current_clock_time - last_text_color_alternate_time >= 250:
-        last_text_color_alternate_time = current_clock_time
+      if current_clock_time - self.last_text_color_alternate_time >= 250:
+        self.last_text_color_alternate_time = current_clock_time
         self.current_text_color = self.red_color if self.current_text_color == self.yellow_color else self.yellow_color
       
       text_surface = self.font.render('Fix Lights (%0)', False, self.red_color)# TODO: Alternate red and yellow every 250ms
