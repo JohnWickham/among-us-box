@@ -80,7 +80,7 @@ class DisplayDrawer():
     graph_width = self.screen_width
     graph_height = 60
     graph_x = 0
-    graph_y = graph_height
+    graph_y = graph_height + 50
     graph_point_count = 110
     
     if len(self.bottom_graph_y_points) == 0:
