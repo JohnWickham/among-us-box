@@ -14,7 +14,7 @@ class DisplayDrawer():
   
   red_color = (234, 50, 35)
   green_color = (161, 233, 73)
-  yellow_color = (251, 251, 104)
+  yellow_color = (238, 221, 74)
   
   current_text_color = red_color
   last_text_color_alternate_time = 0
