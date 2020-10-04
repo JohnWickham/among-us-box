@@ -101,16 +101,18 @@ class DisplayDrawer():
     pygame.draw.lines(self.screen, self.green_color, False, points, 1)
     
   def draw_center_text(self, is_sabotaged):
+   
     if is_sabotaged:
-      
       current_clock_time = pygame.time.get_ticks()
       if current_clock_time - self.last_text_color_alternate_time >= 250:
         self.last_text_color_alternate_time = current_clock_time
         self.current_text_color = self.red_color if self.current_text_color == self.yellow_color else self.yellow_color
       
-      text_surface = self.font.render('Fix Lights (%0)', False, self.current_text_color)# TODO: Alternate red and yellow every 250ms
+      string = "Fix Lights (%0)"
     else:
-      text_surface = self.font.render('Tasks Completed', False, self.green_color)
+      string = "Tasks Completed"
+    
+    text_surface = self.font.render(string, False, self.current_text_color)
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
     self.screen.blit(text_surface, (0, y))
