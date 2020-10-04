@@ -117,7 +117,7 @@ class DisplayDrawer():
     text_surface = pygame.transform.flip(text_surface, True, True)  # Flip the text vertically.
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
-    self.screen.blit(text_surface, (0, y))
+    self.screen.blit(text_surface, (self.screen_width, y))
 
   def update(self, is_sabotaged=False):
     self.screen.fill((0, 0, 0))
