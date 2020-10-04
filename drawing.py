@@ -16,7 +16,7 @@ class DisplayDrawer():
   green_color = (161, 233, 73)
   yellow_color = (251, 251, 104)
   
-  current_text_color = self.red_color
+  current_text_color = red_color
   last_text_color_alternate_time = 0
   
   def FindDisplayDriver(self):
