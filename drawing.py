@@ -12,7 +12,12 @@ class DisplayDrawer():
   screen_width = 0
   screen_height = 0
   
+  red_color = (234, 50, 35)
   green_color = (161, 233, 73)
+  yellow_color = (251, 251, 104)
+  
+  current_text_color = self.red_color
+  last_text_color_alternate_time = 0
   
   def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
@@ -97,7 +102,13 @@ class DisplayDrawer():
     
   def draw_center_text(self, is_sabotaged):
     if is_sabotaged:
-      text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
+      
+      current_clock_time = pygame.time.get_ticks()
+      if current_clock_time - last_text_color_alternate_time >= 250:
+        last_text_color_alternate_time = current_clock_time
+        self.current_text_color = self.red_color if self.current_text_color == self.yellow_color else self.yellow_color
+      
+      text_surface = self.font.render('Fix Lights (%0)', False, self.red_color)# TODO: Alternate red and yellow every 250ms
     else:
       text_surface = self.font.render('Tasks Completed', False, self.green_color)
     text_frame = text_surface.get_rect()
