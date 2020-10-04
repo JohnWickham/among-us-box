@@ -110,6 +110,7 @@ class DisplayDrawer():
       
       string = "Fix Lights (%0)"
     else:
+      self.current_text_color = self.green_color
       string = "Tasks Completed"
     
     text_surface = self.font.render(string, False, self.current_text_color)
