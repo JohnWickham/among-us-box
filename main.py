@@ -14,6 +14,7 @@ relay_output = 4
 shutdown_input = 25
 switch_inputs = [17, 27, 22, 23, 24]
 led_outputs = [5, 6, 12, 13, 16]
+starting_switch_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
 output_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
 changed_switch_inputs = []
 
@@ -52,6 +53,9 @@ def begin_sabotage():
   
   if is_sabotaged:
     return
+    
+  for (index, input_pin) in switch_inputs:
+    starting_switch_states[index] = GPIO.input(input_pin)
   
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)

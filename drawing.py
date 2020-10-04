@@ -12,7 +12,7 @@ class DisplayDrawer():
   screen_width = 0
   screen_height = 0
   
-  graph_green_color = (161, 233, 73)
+  green_color = (161, 233, 73)
   
   def FindDisplayDriver(self):
     for driver in ["fbcon", "directfb", "svgalib"]:
@@ -66,7 +66,7 @@ class DisplayDrawer():
       x = graph_width - (index * round(graph_width / graph_point_count))
       points.append((x, y))
     
-    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
+    pygame.draw.lines(self.screen, self.green_color, False, points, 1)
     
   bottom_graph_y_points = []
     
@@ -93,13 +93,13 @@ class DisplayDrawer():
       x = graph_width - (index * round(graph_width / graph_point_count))
       points.append((x, y))
     
-    pygame.draw.lines(self.screen, self.graph_green_color, False, points, 1)
+    pygame.draw.lines(self.screen, self.green_color, False, points, 1)
     
   def draw_center_text(self, is_sabotaged):
     if is_sabotaged:
       text_surface = self.font.render('Fix Lights (%0)', False, (255, 0, 0))# TODO: Alternate red and yellow
     else:
-      text_surface = self.font.render('Tasks Completed', False, (0, 255, 0))
+      text_surface = self.font.render('Tasks Completed', False, self.green_color)
     text_frame = text_surface.get_rect()
     y = (self.screen_height / 2) - (text_frame.height / 2)
     self.screen.blit(text_surface, (0, y))
