@@ -120,7 +120,7 @@ class DisplayDrawer():
     text_surface = pygame.transform.flip(text_surface, True, True)
     text_frame = text_surface.get_rect()
     x = (self.screen_width - text_frame.width) - 50
-    y = (self.screen_height / 2) - (text_frame.height / 2) - 10
+    y = (self.screen_height / 2) - (text_frame.height / 2) + 10
     self.screen.blit(text_surface, (x, y))
 
   def update(self, is_sabotaged=False):
