@@ -78,6 +78,8 @@ class DisplayDrawer():
     
   def draw_bottom_graph(self):
     
+    # TODO: Draw the graph "baseline" based on how many switch outputs are high
+    
     graph_width = self.screen_width
     graph_height = 60
     graph_x = 0
@@ -115,10 +117,10 @@ class DisplayDrawer():
       string = "Tasks Completed"
     
     text_surface = self.font.render(string, False, self.current_text_color)
-    text_surface = pygame.transform.flip(text_surface, True, True)  # Flip the text vertically.
+    text_surface = pygame.transform.flip(text_surface, True, True)
     text_frame = text_surface.get_rect()
     x = (self.screen_width - text_frame.width) - 50
-    y = (self.screen_height / 2) - (text_frame.height / 2)
+    y = (self.screen_height / 2) - (text_frame.height / 2) - 10
     self.screen.blit(text_surface, (x, y))
 
   def update(self, is_sabotaged=False):
