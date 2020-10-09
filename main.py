@@ -19,7 +19,7 @@ changed_switch_inputs = []
 
 GPIO.setup(trigger_button_input, GPIO.IN)
 GPIO.setup(relay_output, GPIO.OUT)
-GPIO.setup(switch_inputs, GPIO.IN)
+GPIO.setup(switch_inputs, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(led_outputs, GPIO.OUT)
 
 running = True
