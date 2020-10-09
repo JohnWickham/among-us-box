@@ -59,6 +59,7 @@ def begin_sabotage():
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.HIGH)
   GPIO.output(led_outputs, GPIO.LOW)
+  current_channel_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
   
   sound_player.play_sound(SoundEffect.ALARM, True)
   
