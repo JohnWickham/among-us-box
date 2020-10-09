@@ -79,9 +79,7 @@ def process_sabotage():
   
   if is_sabotaged == False:
     return
-  
-  all_states_high = True
-  
+    
   # FIXME: When sabotage starts, the switches will be randomly on and off, not all off. You have to treat each switch’s "on" state as being opposite as its state when sabotage starts, not just GPIO.HIGH.  
 
   for (index, pin_number) in enumerate(switch_inputs):
@@ -94,9 +92,9 @@ def process_sabotage():
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
       should_undo_other = random.getrandbits(1)
       if should_undo_other and changed_switch_inputs:
-        print(f'     Undoing!')
-       
+               
         index_to_undo = random.choice(changed_switch_inputs)
+        print(f'     Undoing {index_to_undo')
         
         current_state = GPIO.input(switch_inputs[index_to_undo])
         new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
@@ -108,10 +106,13 @@ def process_sabotage():
       
     GPIO.output(led_outputs[index], state)
     current_channel_states[index] = state
-    
-    if state != GPIO.HIGH:
-      all_states_high = False
   
+  all_states_high = True
+  for channel in current_channel_states:
+    if channel == GPIO.LOW:
+      all_states_high = False
+      break
+      
   if all_states_high:
     print("All switches on; finishing sabotage…")
     finish_sabotage()
