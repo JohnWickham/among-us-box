@@ -57,7 +57,7 @@ def begin_sabotage():
     starting_channel_states.append(state)
   
   is_sabotaged = True
-  GPIO.output(relay_output, GPIO.LOW)
+  GPIO.output(relay_output, GPIO.HIGH)
   GPIO.output(led_outputs, GPIO.LOW)
   
   sound_player.play_sound(SoundEffect.ALARM, True)
@@ -66,7 +66,7 @@ def finish_sabotage():
   global is_sabotaged
   
   is_sabotaged = False
-  GPIO.output(relay_output, GPIO.HIGH)
+  GPIO.output(relay_output, GPIO.LOW) # TODO: Set the relay to whatever state it was when sabotage began
   changed_switch_inputs.clear()
   starting_channel_states.clear()
   
@@ -89,10 +89,12 @@ def process_sabotage():
     state = GPIO.input(pin_number)
     
     if state != current_channel_states[index]:
+      print(f'Switch {index} was changed')
+      
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
       should_undo_other = random.getrandbits(1)
       if should_undo_other and changed_switch_inputs:
-        print(f'Switch {index} was changed and randomly selected to be undone')
+        print(f'     Undoing!')
        
         index_to_undo = random.choice(changed_switch_inputs)
         
