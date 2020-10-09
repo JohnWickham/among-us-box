@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import pygame
 import os
 from time import sleep

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import subprocess
 import RPi.GPIO as GPIO
 from pyhap.accessory import Accessory
