@@ -11,13 +11,13 @@ GPIO.setmode(GPIO.BCM)
 # Define input and output pins
 trigger_button_input = 26
 relay_output = 4
-switch_inputs = [17, 27, 22, 23, 24]
-led_outputs = [5, 6, 12, 13, 16]
+switch_inputs = [24, 23, 22, 27, 17] # ROYGB order
+led_outputs = [16, 13, 12, 6, 5]
 starting_channel_states = []
 current_channel_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
 changed_switch_inputs = []
 
-GPIO.setup(trigger_button_input, GPIO.IN)
+GPIO.setup(trigger_button_input, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(relay_output, GPIO.OUT)
 GPIO.setup(switch_inputs, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(led_outputs, GPIO.OUT)
@@ -115,7 +115,7 @@ def process_sabotage():
 
 while running:
   
-  if GPIO.input(trigger_button_input) == GPIO.HIGH and is_trigger_button_latched == False:
+  if GPIO.input(trigger_button_input) == GPIO.LOW and is_trigger_button_latched == False:
     print("Trigger button pressed")
     is_trigger_button_latched = True
     if is_sabotaged:
@@ -123,7 +123,7 @@ while running:
     else:
       begin_sabotage()
       continue
-  elif GPIO.input(trigger_button_input) == GPIO.LOW:
+  elif GPIO.input(trigger_button_input) == GPIO.HIGH:
     is_trigger_button_latched = False
     
   display.update(is_sabotaged)
