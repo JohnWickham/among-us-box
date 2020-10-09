@@ -53,7 +53,8 @@ def begin_sabotage():
     return
     
   for (index, input_pin) in enumerate(switch_inputs):
-    starting_channel_states[index] = GPIO.input(input_pin)
+    state = GPIO.input(input_pin)
+    starting_channel_states.append(state)
   
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.LOW)
