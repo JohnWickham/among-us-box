@@ -92,7 +92,7 @@ def process_sabotage():
       print(f'Switch {index} was changed')
       
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
-      should_undo_other = random.getrandbits(1)
+      should_undo_other = (random.getrandbits(2) == 2)
       if should_undo_other and changed_switch_inputs:
         
         index_to_undo = random.choice(changed_switch_inputs)
@@ -102,10 +102,11 @@ def process_sabotage():
         new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
         
         GPIO.output(led_outputs[index_to_undo], new_state)
-      
-      current_switch_states[index] = state  
+        
       changed_switch_inputs.append(index)
       GPIO.output(led_outputs[index], state)
+      
+    current_switch_states[index] = state
   
   all_states_high = True
   for output in led_outputs:
