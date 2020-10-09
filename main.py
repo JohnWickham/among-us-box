@@ -13,8 +13,8 @@ trigger_button_input = 26
 relay_output = 4
 switch_inputs = [24, 23, 22, 27, 17] # ROYGB order
 led_outputs = [16, 13, 12, 6, 5]
-starting_channel_states = []
-switch_states = []
+starting_switch_states = []
+current_switch_states = []
 changed_switch_inputs = []
 
 GPIO.setup(trigger_button_input, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -54,9 +54,9 @@ def begin_sabotage():
     
   for (index, input_pin) in enumerate(switch_inputs):
     state = GPIO.input(input_pin)
-    starting_channel_states.append(state)
-    switch_states.append(state)
-  
+    starting_switch_states.append(state)
+    current_switch_states.append(state)
+      
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.HIGH)
   GPIO.output(led_outputs, GPIO.LOW)
@@ -68,8 +68,9 @@ def finish_sabotage():
   
   is_sabotaged = False
   GPIO.output(relay_output, GPIO.LOW) # TODO: Set the relay to whatever state it was when sabotage began
+  starting_switch_states.clear()
   changed_switch_inputs.clear()
-  switch_states.clear()
+  current_switch_states.clear()
   
   sound_player.stop()
   sound_player.play_sound(SoundEffect.TASK_DONE)
@@ -87,35 +88,36 @@ def process_sabotage():
     
     state = GPIO.input(pin_number)
     
-    if state != switch_states[index]:
+    if state != current_switch_states[index]:
       print(f'Switch {index} was changed')
       
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
       should_undo_other = random.getrandbits(1)
       if should_undo_other and changed_switch_inputs:
-               
+        
         index_to_undo = random.choice(changed_switch_inputs)
         print(f'     Undoing {index_to_undo}')
         
         current_state = GPIO.input(switch_inputs[index_to_undo])
         new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
         
-        current_channel_states[index] = new_state
         GPIO.output(led_outputs[index_to_undo], new_state)
-        
+      
+      current_switch_states[index] = state  
       changed_switch_inputs.append(index)
       
     GPIO.output(led_outputs[index], state)
     switch_states[index] = state
   
   all_states_high = True
-  for channel in current_channel_states:
-    if channel == GPIO.LOW:
+  for output in led_outputs:
+    led_state = GPIO.input(output)
+    if led_state == GPIO.LOW:
       all_states_high = False
       break
       
   if all_states_high:
-    print("All switches on; finishing sabotage…")
+    print("All lights are on; ending sabotage…")
     finish_sabotage()
 
 while running:
