@@ -14,7 +14,7 @@ relay_output = 4
 switch_inputs = [24, 23, 22, 27, 17] # ROYGB order
 led_outputs = [16, 13, 12, 6, 5]
 starting_channel_states = []
-current_channel_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
+switch_states = []
 changed_switch_inputs = []
 
 GPIO.setup(trigger_button_input, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -55,11 +55,11 @@ def begin_sabotage():
   for (index, input_pin) in enumerate(switch_inputs):
     state = GPIO.input(input_pin)
     starting_channel_states.append(state)
+    switch_states.append(state)
   
   is_sabotaged = True
   GPIO.output(relay_output, GPIO.HIGH)
   GPIO.output(led_outputs, GPIO.LOW)
-  current_channel_states = [GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW, GPIO.LOW]
   
   sound_player.play_sound(SoundEffect.ALARM, True)
   
@@ -69,7 +69,7 @@ def finish_sabotage():
   is_sabotaged = False
   GPIO.output(relay_output, GPIO.LOW) # TODO: Set the relay to whatever state it was when sabotage began
   changed_switch_inputs.clear()
-  starting_channel_states.clear()
+  switch_states.clear()
   
   sound_player.stop()
   sound_player.play_sound(SoundEffect.TASK_DONE)
@@ -87,7 +87,7 @@ def process_sabotage():
     
     state = GPIO.input(pin_number)
     
-    if state != current_channel_states[index]:
+    if state != switch_states[index]:
       print(f'Switch {index} was changed')
       
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
@@ -106,7 +106,7 @@ def process_sabotage():
       changed_switch_inputs.append(index)
       
     GPIO.output(led_outputs[index], state)
-    current_channel_states[index] = state
+    switch_states[index] = state
   
   all_states_high = True
   for channel in current_channel_states:
