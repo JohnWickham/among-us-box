@@ -105,9 +105,7 @@ def process_sabotage():
       
       current_switch_states[index] = state  
       changed_switch_inputs.append(index)
-      
-    GPIO.output(led_outputs[index], state)
-    switch_states[index] = state
+      GPIO.output(led_outputs[index], state)
   
   all_states_high = True
   for output in led_outputs:
