@@ -101,6 +101,7 @@ def process_sabotage():
         
         current_state = GPIO.input(switch_inputs[index_to_undo])
         new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
+        changed_switch_inputs.remove(index_to_undo)
         
         GPIO.output(led_outputs[index_to_undo], new_state)
         
