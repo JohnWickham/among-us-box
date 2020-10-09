@@ -93,7 +93,7 @@ def process_sabotage():
       print(f'Switch {index} was changed')
       
       # Switch has changed state! Randomly decide whether to switch a *different* one back here.
-      should_undo_other = random.getrandbits(1)
+      should_undo_other = (random.randint(0, 2) > 0)
       if should_undo_other and changed_switch_inputs:
         
         index_to_undo = random.choice(changed_switch_inputs)
