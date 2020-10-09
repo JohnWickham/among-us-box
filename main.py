@@ -94,7 +94,7 @@ def process_sabotage():
       if should_undo_other and changed_switch_inputs:
                
         index_to_undo = random.choice(changed_switch_inputs)
-        print(f'     Undoing {index_to_undo')
+        print(f'     Undoing {index_to_undo}')
         
         current_state = GPIO.input(switch_inputs[index_to_undo])
         new_state = GPIO.LOW if current_state == GPIO.HIGH else GPIO.HIGH
