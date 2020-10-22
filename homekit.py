@@ -13,7 +13,7 @@ from relayswitch import RelaySwitch
 logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
 def get_accessory(driver):
-    return RelaySwitch(17, driver, 'PrimaryRelaySwitch')
+    return RelaySwitch(4, driver, 'PrimaryRelaySwitch')
 
 # Start the accessory on port 51826
 driver = AccessoryDriver(port=51826)

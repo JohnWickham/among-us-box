@@ -17,7 +17,6 @@ class RelaySwitch(Accessory):
 
     serv_switch = self.add_preload_service('Outlet')
     self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
-    self.relay_in_use = serv_switch.configure_char('OutletInUse', setter_callback=self.get_relay_in_use)
 
   @Accessory.run_at_interval(1)
   def run(self):
@@ -26,7 +25,6 @@ class RelaySwitch(Accessory):
     if self.relay_on.value != state:
       self.relay_on.value = state
       self.relay_on.notify()
-      self.relay_in_use.notify()
 
     oldstate = 1
 
@@ -34,11 +32,9 @@ class RelaySwitch(Accessory):
       oldstate == state
 
   def set_relay(self, state):
+    print("Setting relay state to: ", state)
     if GPIO.input(self.pin_number) != state:
       if state:
         GPIO.output(self.pin_number, 1)
       else:
         GPIO.output(self.pin_number, 0)
-
-  def get_relay_in_use(self, state):
-      return True
