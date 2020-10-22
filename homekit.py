@@ -27,5 +27,4 @@ driver.add_accessory(accessory=bridge)
 signal.signal(signal.SIGTERM, driver.signal_handler)
 
 # Start it!
-#driver.start()
-bridge.run()
+driver.start()
