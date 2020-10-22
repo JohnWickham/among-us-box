@@ -6,7 +6,7 @@ from time import sleep
 from sounds import SoundPlayer, SoundEffect
 from drawing import DisplayDrawer
 import os
-import homekit
+from homekit import HomeKitManager
 
 GPIO.setmode(GPIO.BCM)
 
@@ -30,6 +30,8 @@ display = DisplayDrawer()
 
 sound_player = SoundPlayer()
 sound_player.play_sound(SoundEffect.GAME_START)
+
+homekit_manager = HomeKitManager()
 
 is_trigger_button_latched = False
 
@@ -63,6 +65,8 @@ def begin_sabotage():
   GPIO.output(relay_output, GPIO.HIGH)
   GPIO.output(led_outputs, GPIO.LOW)
   
+  homekit_manager.switch_accessory.set_state(True)# Turn the HomeKit virtual switch accessory on
+  
   sound_player.play_sound(SoundEffect.ALARM, True)
   
 def finish_sabotage():
@@ -73,6 +77,8 @@ def finish_sabotage():
   starting_switch_states.clear()
   changed_switch_inputs.clear()
   current_switch_states.clear()
+  
+  homekit_manager.switch_accessory.set_state(False)# Turn the HomeKit virtual switch accessory off
   
   sound_player.stop()
   sound_player.play_sound(SoundEffect.TASK_DONE)
