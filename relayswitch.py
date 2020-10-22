@@ -17,7 +17,6 @@ class RelaySwitch(Accessory):
 
     serv_switch = self.add_preload_service('Outlet')
     self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
-    self.relay_on = False
 
   @Accessory.run_at_interval(1)
   def run(self):
