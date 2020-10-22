@@ -2,6 +2,7 @@
 import logging
 import signal
 import random
+import threading
 
 from pyhap.accessory import Accessory, Bridge
 from pyhap.accessory_driver import AccessoryDriver
@@ -26,5 +27,5 @@ driver.add_accessory(accessory=bridge)
 # so that it can gracefully stop the accessory, server and advertising.
 signal.signal(signal.SIGTERM, driver.signal_handler)
 
-# Start it!
-driver.start()
+thread = threading.Thread(target=driver.start)
+thread.start()
