@@ -6,6 +6,7 @@ from time import sleep
 from sounds import SoundPlayer, SoundEffect
 from drawing import DisplayDrawer
 import os
+import homekit
 
 GPIO.setmode(GPIO.BCM)
 
