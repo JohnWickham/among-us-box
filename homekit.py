@@ -12,14 +12,11 @@ from relayswitch import RelaySwitch
 
 logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
-def get_accessory(driver):
-    return RelaySwitch(4, driver, 'PrimaryRelaySwitch')
-
 # Start the accessory on port 51826
 driver = AccessoryDriver(port=51826)
 
-# Change `get_accessory` to `get_bridge` if you want to run a Bridge.
-driver.add_accessory(accessory=get_accessory(driver))
+bridge = Bridge(driver, "Among Us Box")
+bridge.add_accessory(RelaySwitch(4, driver, 'PrimaryRelaySwitch'))
 
 # We want SIGTERM (terminate) to be handled by the driver itself,
 # so that it can gracefully stop the accessory, server and advertising.
