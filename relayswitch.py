@@ -23,7 +23,7 @@ class RelaySwitch(Accessory):
     state = GPIO.input(self.pin_number)
 
     if self.relay_on.value != state:
-      self.relay_on.value = state
+      self.relay_on.value = !state
       self.relay_on.notify()
 
     oldstate = 0
