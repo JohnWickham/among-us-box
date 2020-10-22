@@ -26,7 +26,7 @@ class RelaySwitch(Accessory):
       self.relay_on.value = state
       self.relay_on.notify()
 
-    oldstate = 0
+    oldstate = 1
 
     if state != oldstate:
       oldstate == state
