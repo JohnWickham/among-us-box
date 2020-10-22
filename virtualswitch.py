@@ -12,7 +12,7 @@ class VirtualSwitch(Accessory):
     super().__init__(*args, **kwargs)
 
     serv_switch = self.add_preload_service('Switch')
-    self.switch_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
+    self.switch_on = serv_switch.configure_char('On', setter_callback=self.set_state)
 
   def set_state(self, state):
     self.state = state
