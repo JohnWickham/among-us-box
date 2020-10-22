@@ -20,7 +20,7 @@ class RelaySwitch(Accessory):
 
   @Accessory.run_at_interval(1)
   def run(self):
-    state = not GPIO.input(self.pin_number)
+    state = GPIO.input(self.pin_number)
 
     if self.relay_on.value != state:
       self.relay_on.value = state
