@@ -17,12 +17,13 @@ class RelaySwitch(Accessory):
 
     serv_switch = self.add_preload_service('Outlet')
     self.relay_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
+    self.relay_on = True
 
   @Accessory.run_at_interval(1)
   def run(self):
-    state = GPIO.input(self.pin_number)
+    state = not GPIO.input(self.pin_number)
 
-    if self.relay_on.value != state:
+    if self.relay_on.value == state:
       self.relay_on.value = state
       self.relay_on.notify()
 
