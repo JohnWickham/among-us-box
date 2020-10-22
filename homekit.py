@@ -25,4 +25,5 @@ bridge = Bridge(driver=driver, display_name="Among Us Box")
 signal.signal(signal.SIGTERM, driver.signal_handler)
 
 # Start it!
-driver.start()
+#driver.start()
+bridge.run()
