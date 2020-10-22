@@ -35,6 +35,6 @@ class RelaySwitch(Accessory):
     print("Setting relay state to: ", state)
     # The relay is wired in active-low state
     if state:
-      GPIO.output(self.pin_number, 1)
-    else:
       GPIO.output(self.pin_number, 0)
+    else:
+      GPIO.output(self.pin_number, 1)
