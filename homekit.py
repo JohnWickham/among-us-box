@@ -15,10 +15,12 @@ logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
 # Start the accessory on port 51826
 driver = AccessoryDriver(port=51826)
-driver.add_accessory(RelaySwitch(4, driver, 'PrimaryRelaySwitch'))
-driver.add_accessory(VirtualSwitch(driver, 'PrimaryVirtualSwitch'))
 
 bridge = Bridge(driver=driver, display_name="Among Us Box")
+bridge.add_accessory(RelaySwitch(4, driver, 'PrimaryRelaySwitch'))
+bridge.add_accessory(VirtualSwitch(driver, 'PrimaryVirtualSwitch'))
+
+driver.add_accessory(accessory=bridge)
 
 # We want SIGTERM (terminate) to be handled by the driver itself,
 # so that it can gracefully stop the accessory, server and advertising.
