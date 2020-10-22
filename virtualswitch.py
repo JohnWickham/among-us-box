@@ -8,8 +8,8 @@ class VirtualSwitch(Accessory):
   category = CATEGORY_SWITCH
   state = False
   
-  def __init__(self):
-    super().__init__()
+  def __init__(self, *args, **kwargs):
+    super().__init__(*args, **kwargs)
 
     serv_switch = self.add_preload_service('Switch')
     self.switch_on = serv_switch.configure_char('On', setter_callback=self.set_relay)
