@@ -8,7 +8,7 @@ from pyhap.accessory_driver import AccessoryDriver
 import pyhap.loader as loader
 from pyhap import camera
 from pyhap.const import CATEGORY_SENSOR
-from RelaySwitch import RelaySwitch
+from relayswitch import RelaySwitch
 
 logging.basicConfig(level=logging.INFO, format="[%(module)s] %(message)s")
 
