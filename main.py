@@ -142,6 +142,13 @@ while running:
   elif GPIO.input(trigger_button_input) == GPIO.HIGH:
     is_trigger_button_latched = False
     
+  # Start a sabotage if the HomeKit switch was switched remotely
+  if homekit_manager.switch_accessory.state != is_sabotaged:
+    if homekit_manager.switch_accessory.state:
+      begin_sabotage()
+    else:
+      finish_sabotage()
+    
   display.update(is_sabotaged)
   
   if next_scheduled_sabotage_date.ctime() == datetime.now().ctime(): # Comparing the actual datetimes doesn't work for some reason.
